@@ -373,7 +373,7 @@ const FoodOrderingApp = () => {
       id: 1,
       name: "Classic Burger",
       category: "Main Course",
-      price: 12.99,
+      price: 45000,
       description: "Juicy beef patty with lettuce, tomato, and special sauce",
       icon: <Sandwich size={32} />
     },
@@ -381,7 +381,7 @@ const FoodOrderingApp = () => {
       id: 2,
       name: "Margherita Pizza",
       category: "Main Course",
-      price: 18.50,
+      price: 85000,
       description: "Traditional Italian pizza with fresh mozzarella and basil",
       icon: <Pizza size={32} />
     },
@@ -389,7 +389,7 @@ const FoodOrderingApp = () => {
       id: 3,
       name: "Caesar Salad",
       category: "Appetizers",
-      price: 8.99,
+      price: 35000,
       description: "Crispy romaine lettuce with parmesan and croutons",
       icon: <Salad size={32} />
     },
@@ -397,7 +397,7 @@ const FoodOrderingApp = () => {
       id: 4,
       name: "Grilled Chicken",
       category: "Main Course",
-      price: 16.99,
+      price: 65000,
       description: "Herb-marinated chicken breast with seasonal vegetables",
       icon: <Sandwich size={32} />
     },
@@ -405,7 +405,7 @@ const FoodOrderingApp = () => {
       id: 5,
       name: "Cappuccino",
       category: "Beverages",
-      price: 4.50,
+      price: 28000,
       description: "Rich espresso topped with steamed milk foam",
       icon: <Coffee size={32} />
     },
@@ -413,7 +413,7 @@ const FoodOrderingApp = () => {
       id: 6,
       name: "Chocolate Ice Cream",
       category: "Desserts",
-      price: 6.99,
+      price: 25000,
       description: "Creamy Belgian chocolate ice cream with chocolate chips",
       icon: <IceCream size={32} />
     },
@@ -421,7 +421,7 @@ const FoodOrderingApp = () => {
       id: 7,
       name: "Fish & Chips",
       category: "Main Course",
-      price: 14.99,
+      price: 55000,
       description: "Beer-battered fish with crispy fries and tartar sauce",
       icon: <Sandwich size={32} />
     },
@@ -429,7 +429,7 @@ const FoodOrderingApp = () => {
       id: 8,
       name: "Vanilla Milkshake",
       category: "Beverages",
-      price: 5.99,
+      price: 22000,
       description: "Thick and creamy vanilla milkshake with whipped cream",
       icon: <Coffee size={32} />
     }
@@ -477,12 +477,17 @@ const FoodOrderingApp = () => {
   const calculateTotal = () => {
     return Object.values(cart).reduce((total, item) => {
       return total + (item.price * item.quantity);
-    }, 0).toFixed(2);
+    }, 0).toLocaleString('id-ID');
   };
 
   // Get total items in cart
   const getTotalItems = () => {
     return Object.values(cart).reduce((total, item) => total + item.quantity, 0);
+  };
+
+  // Format currency to Rupiah
+  const formatRupiah = (amount) => {
+    return 'Rp' + amount.toLocaleString('id-ID');
   };
 
   // Group items by category
@@ -511,7 +516,7 @@ const FoodOrderingApp = () => {
             onMouseLeave={(e) => e.target.style.backgroundColor = '#f97316'}
           >
             <ShoppingCart size={20} />
-            <span>${calculateTotal()}</span>
+            <span>Rp{calculateTotal()}</span>
             {getTotalItems() > 0 && (
               <span style={styles.cartBadge}>
                 {getTotalItems()}
@@ -559,7 +564,7 @@ const FoodOrderingApp = () => {
                     </div>
                     
                     <div style={styles.cardFooter}>
-                      <span style={styles.price}>${item.price}</span>
+                      <span style={styles.price}>{formatRupiah(item.price)}</span>
                       <div>
                         {cart[item.id] ? (
                           <div style={styles.quantityControls}>
@@ -629,10 +634,10 @@ const FoodOrderingApp = () => {
                         <h4 style={styles.cartItemName}>{item.name}</h4>
                         <div style={styles.cartItemPrice}>
                           <span style={styles.cartItemPriceText}>
-                            ${item.price} × {item.quantity}
+                            {formatRupiah(item.price)} × {item.quantity}
                           </span>
                           <span style={styles.cartItemSubtotal}>
-                            ${(item.price * item.quantity).toFixed(2)}
+                            {formatRupiah(item.price * item.quantity)}
                           </span>
                         </div>
                       </div>
@@ -675,7 +680,7 @@ const FoodOrderingApp = () => {
                 <div style={styles.cartFooter}>
                   <div style={styles.totalSection}>
                     <span style={styles.totalLabel}>Total Amount:</span>
-                    <span style={styles.totalAmount}>${calculateTotal()}</span>
+                    <span style={styles.totalAmount}>Rp{calculateTotal()}</span>
                   </div>
                   <button 
                     style={styles.checkoutButton}

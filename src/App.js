@@ -25,6 +25,11 @@ const FoodOrderingApp = () => {
   // null = tidak ada yang di-hover, number = ID item yang di-hover
   const [hoveredCard, setHoveredCard] = useState(null);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    gender: "",
+  });
+
   // ===== CART MANIPULATION FUNCTIONS =====
 
   /**
@@ -146,7 +151,20 @@ const FoodOrderingApp = () => {
         setShowCart={setShowCart}
       />
 
-      <ModalsForm />
+      <ModalsForm
+        userData={formData} // Send current data down
+        setUserData={setFormData} // Send update function down
+      />
+      {/* CART SIDEBAR - CONDITIONAL RENDERING + FLEXBOX */}
+      <CartSidebar
+        cart={cart}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
+        deleteFromCart={deleteFromCart}
+        calculateTotal={calculateTotal}
+        formatRupiah={formatRupiah}
+        showCart={showCart}
+      />
       {/* MAIN CONTENT CONTAINER - FLEXBOX IMPLEMENTATION */}
       {/* 
         FLEXBOX USAGE 1: MAIN LAYOUT CONTAINER
@@ -164,17 +182,6 @@ const FoodOrderingApp = () => {
           hoveredCard={hoveredCard}
           setHoveredCard={setHoveredCard}
           formatRupiah={formatRupiah}
-        />
-
-        {/* CART SIDEBAR - CONDITIONAL RENDERING + FLEXBOX */}
-        <CartSidebar
-          cart={cart}
-          addToCart={addToCart}
-          removeFromCart={removeFromCart}
-          deleteFromCart={deleteFromCart}
-          calculateTotal={calculateTotal}
-          formatRupiah={formatRupiah}
-          showCart={showCart}
         />
       </div>
     </div>

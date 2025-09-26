@@ -3,23 +3,19 @@ import { useState } from "react";
 import styles from "./Modals.module.css";
 import { X } from "lucide-react";
 
-export default function ModalsForm() {
+export default function ModalsForm({ userData, setUserData }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const [formData, setFormData] = useState({
-    name: "",
-    gender: "",
-  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setUserData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
   const handleGenderChange = (e) => {
-    setFormData((prev) => ({
+    setUserData((prev) => ({
       ...prev,
       gender: e.target.value,
     }));
@@ -27,7 +23,7 @@ export default function ModalsForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log("Form submitted:", userData);
     // Process form data here
     setIsModalOpen(false);
   };
@@ -41,7 +37,7 @@ export default function ModalsForm() {
       <div className={styles.welcomeContainer}>
         <div className={styles.welcomeContent}>
           <h1 className={styles.welcomeTitle}>
-            Welcome {formData.name || "Guest"}!
+            Welcome {userData.name || "Guest"}!
           </h1>
         </div>
       </div>
@@ -54,7 +50,7 @@ export default function ModalsForm() {
       <div className={styles.welcomeContainer}>
         <div className={styles.welcomeContent}>
           <h1 className={styles.welcomeTitle}>
-            Welcome {formData.name || "Guest"}!
+            Welcome {userData.name || "Guest"}!
           </h1>
         </div>
       </div>
@@ -82,7 +78,7 @@ export default function ModalsForm() {
                 type="text"
                 id="name"
                 name="name"
-                value={formData.name}
+                value={userData.name}
                 onChange={handleInputChange}
                 className={styles.input}
                 placeholder="Enter your name"
@@ -100,7 +96,7 @@ export default function ModalsForm() {
                     id="male"
                     name="gender"
                     value="male"
-                    checked={formData.gender === "male"}
+                    checked={userData.gender === "male"}
                     onChange={handleGenderChange}
                     className={styles.radioInput}
                   />
@@ -114,7 +110,7 @@ export default function ModalsForm() {
                     id="female"
                     name="gender"
                     value="female"
-                    checked={formData.gender === "female"}
+                    checked={userData.gender === "female"}
                     onChange={handleGenderChange}
                     className={styles.radioInput}
                   />

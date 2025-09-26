@@ -91,12 +91,12 @@ export const menuItems = [
   },
   {
     id: 9,
-    name: "Bacon Cheeseburger",
+    name: "Cheeseburger",
     category: "Main Course",
     price: 52000,
-    description: "Beef patty with crispy bacon and melted cheese",
+    description: "Beef patty with crispy melted cheese",
     image:
-      "https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=400&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 10,
@@ -114,7 +114,7 @@ export const menuItems = [
     price: 38000,
     description: "Grilled chicken breast with avocado and mayo",
     image:
-      "https://images.unsplash.com/photo-1606755962773-d324e9a13086?w=400&h=300&fit=crop&crop=center",
+      "https://plus.unsplash.com/premium_photo-1683655058728-415f4f2674bf?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 12,
@@ -168,7 +168,7 @@ export const menuItems = [
     price: 75000,
     description: "Linguine with shrimp, scallops, and white wine sauce",
     image:
-      "https://images.unsplash.com/photo-1621996346565-e3dbc41d6d8f?w=400&h=300&fit=crop&crop=center",
+      "https://plus.unsplash.com/premium_photo-1661455803353-f69a605b5105?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 18,
@@ -177,7 +177,7 @@ export const menuItems = [
     price: 45000,
     description: "Three soft tacos with seasoned ground beef",
     image:
-      "https://images.unsplash.com/photo-1565299585323-38174c4a6471?w=400&h=300&fit=crop&crop=center",
+      "https://plus.unsplash.com/premium_photo-1661730314652-911662c0d86e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 19,
@@ -251,7 +251,7 @@ export const menuItems = [
     price: 33000,
     description: "Toasted bread with fresh tomatoes and basil",
     image:
-      "https://images.unsplash.com/photo-1572441713132-51c75654db73?w=400&h=300&fit=crop&crop=center",
+      "https://plus.unsplash.com/premium_photo-1677686707252-16013f466e61?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 27,
@@ -260,7 +260,7 @@ export const menuItems = [
     price: 30000,
     description: "Fresh vegetable spring rolls with peanut sauce",
     image:
-      "https://images.unsplash.com/photo-1563379091339-03246963d51a?w=400&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1695712641569-05eee7b37b6d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 28,
@@ -269,7 +269,7 @@ export const menuItems = [
     price: 36000,
     description: "Button mushrooms stuffed with herbs and cheese",
     image:
-      "https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=400&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1756478629551-2f5708638b23?fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
   },
   {
     id: 29,
@@ -388,7 +388,7 @@ export const menuItems = [
     price: 20000,
     description: "Rich hot chocolate with marshmallows",
     image:
-      "https://images.unsplash.com/photo-1542990253-0b851be2ca94?w=400&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 42,
@@ -435,7 +435,7 @@ export const menuItems = [
     price: 32000,
     description: "Classic apple pie with cinnamon and vanilla ice cream",
     image:
-      "https://images.unsplash.com/photo-1621743478914-cc8a86d7e9b5?w=400&h=300&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1572383672419-ab35444a6934?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 47,

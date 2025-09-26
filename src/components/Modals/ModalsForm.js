@@ -51,11 +51,12 @@ export default function ModalsForm() {
   return (
     <div className={styles.container}>
       {/* Background content */}
-      <div className={styles.backgroundContent}>
-        <h1 className={styles.mainTitle}>My Website</h1>
-        <p className={styles.mainText}>
-          This is the main content of the website.
-        </p>
+      <div className={styles.welcomeContainer}>
+        <div className={styles.welcomeContent}>
+          <h1 className={styles.welcomeTitle}>
+            Welcome {formData.name || "Guest"}!
+          </h1>
+        </div>
       </div>
 
       {/* Modal Overlay */}

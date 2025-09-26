@@ -5,7 +5,6 @@ import CartSidebar from "./components/CartSidebar";
 import { menuItems } from "./data/menuData";
 import { styles } from "./styles/styles";
 import ModalsForm from "./components/Modals/ModalsForm";
-import { Recommendation } from "./components/Recommendation/Recommendation";
 
 const FoodOrderingApp = () => {
   // ===== USESTATE IMPLEMENTATIONS - STATE MANAGEMENT UTAMA =====

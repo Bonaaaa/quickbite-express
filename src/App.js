@@ -5,6 +5,7 @@ import CartSidebar from "./components/CartSidebar";
 import { menuItems } from "./data/menuData";
 import { styles } from "./styles/styles";
 import ModalsForm from "./components/Modals/ModalsForm";
+import { Recommendation } from "./components/Recommendation/Recommendation";
 
 const FoodOrderingApp = () => {
   // ===== USESTATE IMPLEMENTATIONS - STATE MANAGEMENT UTAMA =====
@@ -24,6 +25,11 @@ const FoodOrderingApp = () => {
   // Menyimpan ID item yang sedang di-hover untuk efek visual
   // null = tidak ada yang di-hover, number = ID item yang di-hover
   const [hoveredCard, setHoveredCard] = useState(null);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    gender: "",
+  });
 
   // ===== CART MANIPULATION FUNCTIONS =====
 
@@ -146,7 +152,20 @@ const FoodOrderingApp = () => {
         setShowCart={setShowCart}
       />
 
-      <ModalsForm />
+      <ModalsForm
+        userData={formData} // Send current data down
+        setUserData={setFormData} // Send update function down
+      />
+      {/* CART SIDEBAR - CONDITIONAL RENDERING + FLEXBOX */}
+      <CartSidebar
+        cart={cart}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
+        deleteFromCart={deleteFromCart}
+        calculateTotal={calculateTotal}
+        formatRupiah={formatRupiah}
+        showCart={showCart}
+      />
       {/* MAIN CONTENT CONTAINER - FLEXBOX IMPLEMENTATION */}
       {/* 
         FLEXBOX USAGE 1: MAIN LAYOUT CONTAINER
@@ -164,17 +183,6 @@ const FoodOrderingApp = () => {
           hoveredCard={hoveredCard}
           setHoveredCard={setHoveredCard}
           formatRupiah={formatRupiah}
-        />
-
-        {/* CART SIDEBAR - CONDITIONAL RENDERING + FLEXBOX */}
-        <CartSidebar
-          cart={cart}
-          addToCart={addToCart}
-          removeFromCart={removeFromCart}
-          deleteFromCart={deleteFromCart}
-          calculateTotal={calculateTotal}
-          formatRupiah={formatRupiah}
-          showCart={showCart}
         />
       </div>
     </div>

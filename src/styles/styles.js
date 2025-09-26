@@ -304,11 +304,15 @@ export const styles = {
   // ===== CART SIDEBAR STYLING =====
 
   cartSidebar: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     flex: "1",
     minWidth: "320px",
-    position: "sticky",
+    width: "100%",
     top: "100px",
     height: "fit-content",
+    marginTop: "10px",
   },
 
   cartContainer: {
@@ -316,6 +320,8 @@ export const styles = {
     borderRadius: "12px",
     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
     padding: "24px",
+    maxWidth: "1160px",
+    width: "100%",
   },
 
   cartTitle: {
@@ -331,7 +337,7 @@ export const styles = {
   // ===== EMPTY CART STATE =====
 
   emptyCart: {
-    display: "flex",
+    display: "none",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",

@@ -1,10 +1,50 @@
-import React from 'react';
-import CategorySection from './CategorySection';
-import { styles } from '../styles/styles';
+import React, { useState } from "react";
+import CategorySection from "./CategorySection";
+import { styles } from "../styles/styles";
+
+// Additional tab-specific styles (can be moved to styles.js)
+const tabStyles = {
+  tabsContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "8px",
+    marginBottom: "24px",
+    borderBottom: "2px solid #f3f4f6",
+    paddingBottom: "16px",
+  },
+
+  tabButton: {
+    backgroundColor: "#f3f4f6",
+    color: "#6b7280",
+    border: "none",
+    padding: "12px 20px",
+    borderRadius: "8px",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    fontSize: "16px",
+    fontWeight: "500",
+    transition: "all 0.3s ease",
+    minWidth: "fit-content",
+  },
+
+  tabButtonActive: {
+    backgroundColor: "#f97316",
+    color: "white",
+    fontWeight: "600",
+    boxShadow: "0 2px 4px rgba(249, 115, 22, 0.3)",
+  },
+
+  tabItemCount: {
+    fontSize: "14px",
+    opacity: 0.8,
+  },
+};
 
 /**
- * MENU SECTION COMPONENT
- * Fungsi: Container utama untuk semua kategori menu
+ * MENU SECTION COMPONENT - UPDATED WITH CATEGORY TABS
+ * Fungsi: Container utama untuk semua kategori menu dengan tab navigation
  * Props yang diterima dari App.js:
  * - groupedItems: object berisi menu items yang dikelompokkan per kategori
  * - cart: object berisi items dalam keranjang (untuk cek quantity)
@@ -21,56 +61,85 @@ const MenuSection = ({
   removeFromCart,
   hoveredCard,
   setHoveredCard,
-  formatRupiah
+  formatRupiah,
 }) => {
+  // ===== NEW STATE: ACTIVE TAB MANAGEMENT =====
+
+  /**
+   * ACTIVE TAB STATE
+   * Menyimpan kategori yang sedang aktif/dipilih
+   * Default: kategori pertama yang tersedia
+   */
+  const categories = Object.keys(groupedItems);
+  const [activeTab, setActiveTab] = useState(categories[0] || "");
+
+  /**
+   * TAB CLICK HANDLER
+   * Mengubah kategori aktif ketika tab diklik
+   */
+  const handleTabClick = (category) => {
+    setActiveTab(category);
+  };
+
+  /**
+   * GET ACTIVE CATEGORY ITEMS
+   * Mendapatkan items dari kategori yang sedang aktif
+   */
+  const activeItems = groupedItems[activeTab] || [];
 
   return (
-    /* 
-      FLEXBOX CONTAINER: MENU SECTION WRAPPER
-      menuSection style properties:
-      - flex: '2' → Mengambil 2 bagian dari 3 total flex space (2:1 ratio dengan cart)
-      - minWidth: '300px' → Minimum width untuk responsive behavior
-      
-      FLEXBOX BEHAVIOR:
-      - Ini adalah flex item dari mainContent container
-      - Akan menyusut/membesar berdasarkan available space
-      - Pada mobile, akan mengambil full width karena flex-direction berubah ke column
-    */
     <div style={styles.menuSection}>
-      
       {/* MENU TITLE */}
-      {/* 
-        FLEXBOX IMPLEMENTATION 5: MENU TITLE LAYOUT
-        menuTitle style properties:
-        - display: 'flex' → Horizontal layout
-        - alignItems: 'center' → Vertical center alignment
-        - gap: '8px' → Space antara emoji dan text
-      */}
       <h2 style={styles.menuTitle}>
         <span>📋</span>
         <span>Our Menu</span>
       </h2>
-      
-      {/* CATEGORIES LOOP */}
-      {/* 
-        MAPPING OVER GROUPED ITEMS:
-        - Object.entries() mengubah object menjadi array [key, value] pairs
-        - Setiap kategori di-render sebagai CategorySection component
-        - Key menggunakan category name untuk React reconciliation
-      */}
-      {Object.entries(groupedItems).map(([category, items]) => (
+
+      {/* NEW: CATEGORY TABS NAVIGATION */}
+      <div style={tabStyles.tabsContainer}>
+        {categories.map((category) => (
+          <button
+            key={category}
+            style={{
+              ...tabStyles.tabButton,
+              ...(activeTab === category ? tabStyles.tabButtonActive : {}),
+            }}
+            onClick={() => handleTabClick(category)}
+            onMouseEnter={(e) => {
+              if (activeTab !== category) {
+                e.target.style.backgroundColor = "#fed7aa";
+                e.target.style.color = "#ea580c";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (activeTab !== category) {
+                e.target.style.backgroundColor = "#f3f4f6";
+                e.target.style.color = "#6b7280";
+              }
+            }}
+          >
+            {category}
+            <span style={tabStyles.tabItemCount}>
+              ({groupedItems[category].length})
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* ACTIVE CATEGORY CONTENT */}
+      {activeTab && (
         <CategorySection
-          key={category} // React key untuk efficient re-rendering
-          category={category} // Nama kategori (string)
-          items={items} // Array items dalam kategori ini
-          cart={cart} // Cart state untuk cek item quantities
-          addToCart={addToCart} // Function untuk add item
-          removeFromCart={removeFromCart} // Function untuk remove item
-          hoveredCard={hoveredCard} // Hover state untuk visual effect
-          setHoveredCard={setHoveredCard} // Function untuk update hover
-          formatRupiah={formatRupiah} // Currency formatter function
+          key={activeTab} // Force re-render when tab changes
+          category={activeTab}
+          items={activeItems}
+          cart={cart}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+          hoveredCard={hoveredCard}
+          setHoveredCard={setHoveredCard}
+          formatRupiah={formatRupiah}
         />
-      ))}
+      )}
     </div>
   );
 };

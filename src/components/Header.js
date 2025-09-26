@@ -1,6 +1,6 @@
-import React from 'react';
-import { ShoppingCart } from 'lucide-react';
-import { styles } from '../styles/styles';
+import React from "react";
+import { ShoppingCart } from "lucide-react";
+import { styles } from "../styles/styles";
 
 /**
  * HEADER COMPONENT
@@ -12,9 +12,8 @@ import { styles } from '../styles/styles';
  * - setShowCart: function untuk update showCart state
  */
 const Header = ({ calculateTotal, getTotalItems, showCart, setShowCart }) => {
-  
   // ===== EVENT HANDLERS =====
-  
+
   /**
    * CART BUTTON CLICK HANDLER
    * Toggle visibility cart untuk mobile view
@@ -22,6 +21,10 @@ const Header = ({ calculateTotal, getTotalItems, showCart, setShowCart }) => {
    */
   const handleCartToggle = () => {
     setShowCart(!showCart); // Toggle boolean state
+    const el = document.getElementById("cart-sidebar");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   /**
@@ -30,7 +33,7 @@ const Header = ({ calculateTotal, getTotalItems, showCart, setShowCart }) => {
    * Menggunakan inline event handlers untuk perubahan style langsung
    */
   const handleCartHover = (e, isHovering) => {
-    e.target.style.backgroundColor = isHovering ? '#ea580c' : '#f97316';
+    e.target.style.backgroundColor = isHovering ? "#ea580c" : "#f97316";
   };
 
   return (
@@ -50,7 +53,6 @@ const Header = ({ calculateTotal, getTotalItems, showCart, setShowCart }) => {
         - margin: '0 auto' → Center alignment horizontal
       */}
       <div style={styles.headerContent}>
-        
         {/* LEFT SECTION: LOGO & TAGLINE */}
         {/* 
           FLEXBOX BEHAVIOR: Flex item yang mengambil space di kiri
@@ -60,7 +62,7 @@ const Header = ({ calculateTotal, getTotalItems, showCart, setShowCart }) => {
           <h1 style={styles.logo}>🍔 QuickBite Express</h1>
           <p style={styles.tagline}>Order your favorite meals online!</p>
         </div>
-        
+
         {/* RIGHT SECTION: CART BUTTON */}
         {/* 
           FLEXBOX BEHAVIOR: Flex item yang mengambil space di kanan
@@ -79,17 +81,17 @@ const Header = ({ calculateTotal, getTotalItems, showCart, setShowCart }) => {
             - alignItems: 'center' → Vertical center alignment
             - gap: '8px' → Space antara icon, text, dan badge
           */}
-          
+
           {/* CART ICON */}
           <ShoppingCart size={20} />
-          
+
           {/* TOTAL PRICE TEXT */}
           {/* 
             DYNAMIC CONTENT: Text berubah berdasarkan cart state
             calculateTotal() dipanggil setiap re-render untuk update harga
           */}
           <span>Rp{calculateTotal()}</span>
-          
+
           {/* CART BADGE (CONDITIONAL RENDERING) */}
           {/* 
             CONDITIONAL RENDERING: Badge hanya muncul jika ada item di cart

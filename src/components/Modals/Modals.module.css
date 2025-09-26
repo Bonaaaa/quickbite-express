@@ -147,9 +147,11 @@
 }
 
 .modalSubtitle {
-  color: white;
   margin-top: 0.5rem;
   margin-bottom: 0;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
 }
 
 /* Form styles */

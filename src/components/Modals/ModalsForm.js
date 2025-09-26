@@ -67,9 +67,7 @@ export default function ModalsForm() {
             <button className={styles.closeButton} onClick={handleClose}>
               <X />
             </button>
-            <p className={styles.modalSubtitle}>
-              Please fill out this form to continue
-            </p>
+            <p className={styles.modalSubtitle}>🍔 QuickBite Express</p>
           </div>
 
           {/* Modal Body */}

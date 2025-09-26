@@ -1,7 +1,6 @@
 /* Main container styles */
 .container {
   min-height: 10%;
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
   position: relative;
 }
 

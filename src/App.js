@@ -1,31 +1,32 @@
-import React, { useState } from 'react';
-import Header from './components/Header';
-import MenuSection from './components/MenuSection';
-import CartSidebar from './components/CartSidebar';
-import { menuItems } from './data/menuData';
-import { styles } from './styles/styles';
+import React, { useState } from "react";
+import Header from "./components/Header";
+import MenuSection from "./components/MenuSection";
+import CartSidebar from "./components/CartSidebar";
+import { menuItems } from "./data/menuData";
+import { styles } from "./styles/styles";
+import ModalsForm from "./components/Modals/ModalsForm";
 
 const FoodOrderingApp = () => {
   // ===== USESTATE IMPLEMENTATIONS - STATE MANAGEMENT UTAMA =====
-  
+
   // STATE 1: CART MANAGEMENT (Object-based structure)
   // Menggunakan object dengan ID sebagai key untuk performa O(1) lookup
   // Format: { itemId: { ...itemData, quantity: number } }
   // Keuntungan: Update quantity sangat cepat, tidak perlu loop array
   const [cart, setCart] = useState({});
-  
+
   // STATE 2: MOBILE CART VISIBILITY
   // Boolean state untuk mengontrol tampilan cart di mobile view
   // Digunakan untuk responsive design - sidebar tersembunyi di mobile
   const [showCart, setShowCart] = useState(false);
-  
+
   // STATE 3: HOVER EFFECT MANAGEMENT
   // Menyimpan ID item yang sedang di-hover untuk efek visual
   // null = tidak ada yang di-hover, number = ID item yang di-hover
   const [hoveredCard, setHoveredCard] = useState(null);
 
   // ===== CART MANIPULATION FUNCTIONS =====
-  
+
   /**
    * FUNGSI 1: ADD TO CART
    * Line-by-line explanation:
@@ -36,12 +37,13 @@ const FoodOrderingApp = () => {
    * 5. Jika item sudah ada, tambah quantity; jika tidak, set quantity = 1
    */
   const addToCart = (item) => {
-    setCart(prevCart => ({
+    setCart((prevCart) => ({
       ...prevCart, // Spread operator untuk immutable update
-      [item.id]: { // Computed property name dengan ID sebagai key
+      [item.id]: {
+        // Computed property name dengan ID sebagai key
         ...item, // Copy semua properti item (name, price, etc.)
-        quantity: (prevCart[item.id]?.quantity || 0) + 1 // Optional chaining + fallback
-      }
+        quantity: (prevCart[item.id]?.quantity || 0) + 1, // Optional chaining + fallback
+      },
     }));
   };
 
@@ -55,14 +57,15 @@ const FoodOrderingApp = () => {
    * 5. Return updated cart state
    */
   const removeFromCart = (itemId) => {
-    setCart(prevCart => {
+    setCart((prevCart) => {
       const newCart = { ...prevCart }; // Shallow copy untuk immutability
-      if (newCart[itemId]) { // Cek keberadaan item
+      if (newCart[itemId]) {
+        // Cek keberadaan item
         if (newCart[itemId].quantity > 1) {
           // Kurangi quantity jika masih > 1
           newCart[itemId] = {
             ...newCart[itemId], // Copy existing item properties
-            quantity: newCart[itemId].quantity - 1 // Decrease quantity
+            quantity: newCart[itemId].quantity - 1, // Decrease quantity
           };
         } else {
           // Hapus item jika quantity = 1
@@ -78,7 +81,7 @@ const FoodOrderingApp = () => {
    * Menghapus item sepenuhnya tanpa peduli quantity
    */
   const deleteFromCart = (itemId) => {
-    setCart(prevCart => {
+    setCart((prevCart) => {
       const newCart = { ...prevCart }; // Immutable copy
       delete newCart[itemId]; // Remove item completely
       return newCart; // Return updated state
@@ -86,16 +89,18 @@ const FoodOrderingApp = () => {
   };
 
   // ===== COMPUTED VALUES FUNCTIONS =====
-  
+
   /**
    * FUNGSI 4: CALCULATE TOTAL PRICE
    * Menghitung total harga semua item dalam cart
    * Menggunakan Object.values() dan reduce() untuk iterasi
    */
   const calculateTotal = () => {
-    return Object.values(cart).reduce((total, item) => {
-      return total + (item.price * item.quantity); // Accumulate price × quantity
-    }, 0).toLocaleString('id-ID'); // Format to Indonesian number format
+    return Object.values(cart)
+      .reduce((total, item) => {
+        return total + item.price * item.quantity; // Accumulate price × quantity
+      }, 0)
+      .toLocaleString("id-ID"); // Format to Indonesian number format
   };
 
   /**
@@ -103,7 +108,10 @@ const FoodOrderingApp = () => {
    * Menghitung total jumlah item (quantity) dalam cart
    */
   const getTotalItems = () => {
-    return Object.values(cart).reduce((total, item) => total + item.quantity, 0);
+    return Object.values(cart).reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
   };
 
   /**
@@ -111,7 +119,7 @@ const FoodOrderingApp = () => {
    * Utility function untuk format rupiah
    */
   const formatRupiah = (amount) => {
-    return 'Rp' + amount.toLocaleString('id-ID');
+    return "Rp" + amount.toLocaleString("id-ID");
   };
 
   /**
@@ -138,6 +146,7 @@ const FoodOrderingApp = () => {
         setShowCart={setShowCart}
       />
 
+      <ModalsForm />
       {/* MAIN CONTENT CONTAINER - FLEXBOX IMPLEMENTATION */}
       {/* 
         FLEXBOX USAGE 1: MAIN LAYOUT CONTAINER
@@ -146,7 +155,6 @@ const FoodOrderingApp = () => {
         - flexWrap: 'wrap' → Responsive wrapping untuk mobile
       */}
       <div style={styles.mainContent}>
-        
         {/* MENU SECTION - FLEXBOX HEAVY COMPONENT */}
         <MenuSection
           groupedItems={groupedItems}

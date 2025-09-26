@@ -1,0 +1,348 @@
+/* Main container styles */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+  position: relative;
+}
+
+.backgroundContent {
+  padding: 2rem;
+}
+
+.mainTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.mainText {
+  color: #6b7280;
+}
+
+/* Welcome page styles */
+.welcomeContainer {
+  min-height: 10%;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.welcomeContent {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.welcomeTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.welcomeText {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+/* Modal styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-width: 28rem;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal header */
+.modalHeader {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  background: linear-gradient(
+    90deg,
+    rgb(249, 115, 22) 0%,
+    rgb(249, 115, 10) 100%
+  );
+  padding: 1.5rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+
+.closeButton {
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton:hover {
+  color: #d1d5db;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modalSubtitle {
+  color: white;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+/* Form styles */
+.modalBody {
+  padding: 1.5rem;
+}
+
+.formField {
+  margin-bottom: 1.5rem;
+}
+
+.formField:last-of-type {
+  margin-bottom: 0;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: rgb(249, 115, 22);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.textarea {
+  resize: none;
+  min-height: 6rem;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Radio button styles */
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.radioInput {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.radioInput:checked {
+  border-color: rgb(249, 115, 22);
+  background-color: rgb(249, 115, 22);
+}
+
+.radioInput:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+}
+
+.radioInput:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.radioInput:hover {
+  border-color: #9ca3af;
+}
+
+.radioInput:checked:hover {
+  border-color: rgb(249, 115, 22);
+  background-color: rgb(249, 115, 22);
+}
+
+.radioLabel {
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Form actions */
+.formActions {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+
+.skipButton,
+.submitButton {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  border: none;
+}
+
+.skipButton {
+  border: 1px solid #d1d5db;
+  color: #374151;
+  background-color: white;
+}
+
+.skipButton:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.submitButton {
+  background: linear-gradient(
+    90deg,
+    rgb(249, 115, 22) 0%,
+    rgb(249, 115, 22) 100%
+  );
+  color: white;
+  box-shadow: 0 4px 12px rgb(249, 115, 22);
+}
+
+.submitButton:hover {
+  background: linear-gradient(
+    90deg,
+    rgb(249, 115, 22) 0%,
+    rgb(249, 115, 22) 100%
+  );
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgb(249, 115, 22);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .modalContent {
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+
+  .modalHeader,
+  .modalBody {
+    padding: 1rem;
+  }
+
+  .formActions {
+    flex-direction: column;
+  }
+
+  .skipButton,
+  .submitButton {
+    width: 100%;
+  }
+
+  .mainTitle,
+  .welcomeTitle {
+    font-size: 2rem;
+  }
+}

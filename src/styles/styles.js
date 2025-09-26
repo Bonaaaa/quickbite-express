@@ -502,7 +502,7 @@ export const styles = {
     },
     menuSection: {
       flex: "1",
-      width: "100%",
+      width: "99%",
     },
     cartSidebar: {
       display: "none",
